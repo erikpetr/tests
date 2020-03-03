@@ -18,13 +18,14 @@ public class GetPriceTest {
 
     @After
     public void tearDown() throws Exception {
+        this.price = null;
     }
 
     @Test
     public void getPriceValidZoneId() {
         try {
             PPrice pPrice = price.getPriceRemote(1);
-            assertEquals(35, pPrice.getParkingPrice());
+            assertEquals("Getting the price for zone 1 from the db should give 35",35, pPrice.getParkingPrice());
         } catch (DatabaseLayerException e) {
             e.printStackTrace();
         }

@@ -18,6 +18,7 @@ public class ParkingBuyTest {
 
     @After
     public void tearDown() throws Exception {
+        this.payStation = null;
     }
 
     @Test
@@ -25,7 +26,7 @@ public class ParkingBuyTest {
         try {
             payStation.addPayment(2, Currency.ValidCurrency.EURO, Currency.ValidCoinType.INTEGER);
             PReceipt receipt = payStation.buy();
-            assertEquals(80, receipt.getValue());
+            assertEquals("Adding 2 EUR as pressing buy should print a receipt which says 80 minutes",80, receipt.getValue());
         } catch (DatabaseLayerException | IllegalCoinException e) {
             e.printStackTrace();
         }
