@@ -1,7 +1,7 @@
 .idea
 bin
-*.iml
 lib
 .classpath
 .project
 module-info.java
+*.iml
