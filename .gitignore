@@ -1,4 +1,7 @@
 .idea
 bin
 lib
+.classpath
+.project
+module-info.java
 *.iml
