@@ -92,7 +92,9 @@ public class TestDatabaseAccess {
 		assertEquals("Num row deleted should be equal to 1", numRowDeleted, 1);
 	}
 
-	
+	/**
+	 * WARNING : The price at the idzonw 2 can change
+	 */
 	@Test
 	public void wasRetrievedPriceDatabaselayer() {
 		// Arrange
@@ -102,10 +104,16 @@ public class TestDatabaseAccess {
 
 		
 		// Act
-
-		// Assert
-		assertEquals("Dummy", 0, 1);
+		try {
+			foundPrice = dbPrice.getPriceByZoneId(pZoneId);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		// Assert
+		assertTrue("A PPrice should have been discovered", foundPrice != null);
+		assertEquals("Found price should be equal to 25", foundPrice.getParkingPrice(), 25);
 	}
 	
 	

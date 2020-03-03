@@ -1,8 +1,9 @@
 package databaselayer;
 
+import java.sql.Array;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Calendar;
 import java.sql.SQLException;
 
 import modellayer.*;
@@ -17,27 +18,38 @@ public class DatabasePPrice implements IDbPPrice {
 	public PPrice getPriceByZoneId(int zoneId) throws DatabaseLayerException {
 		PPrice foundPrice = null;
 		
-		Calendar calendar = Calendar.getInstance();
-		java.sql.Date dateNow = new java.sql.Date(calendar.getTime().getTime());
-		
 		Connection con = DBConnection.getInstance().getDBcon();
 
-		String baseSelect = "select top 1 price, pZone_id from PPrice ";
-		baseSelect += "where pZone_id = " + zoneId + " and starttime < '" + dateNow + "' ";
-		baseSelect += "order by starttime desc";
+		String baseSelect = "SELECT price ";
+		baseSelect += " FROM PPrice ";
+		baseSelect += " WHERE pZone_id = " + zoneId;
+		baseSelect += " AND starttime IN (";
+		baseSelect += "	 SELECT MAX(starttime)";
+		baseSelect += "  FROM PPrice";
+		baseSelect += "  WHERE pZone_id = " + zoneId;
+		baseSelect += " );";
 		System.out.println(baseSelect);
 	
-		//ResultSet rs = null; 
-		int price, pZoneId;
+		// ResultSet rs = null; 
+		int price;
 		PZone pZone; 
 		try {
 			Statement stmt = con.createStatement();
 			stmt.setQueryTimeout(5);
-			// Todo: Get PPrice object
-			// ResultSet rs = stmt.executeQuery(baseSelect);
-			/*
-			 * Insert code 
-			 */
+			System.out.println("1");
+			
+			ResultSet rs = stmt.executeQuery(baseSelect);
+
+			System.out.println(rs == null);
+			rs.next();
+			System.out.println("2");
+			price = rs.getInt(1);
+
+			System.out.println("3");
+			pZone = new PZone(zoneId, "TestName");
+			foundPrice = new PPrice(price, pZone);
+
+			System.out.println("4");
 			stmt.close();
 		} catch (SQLException ex) {
 			foundPrice = null;
