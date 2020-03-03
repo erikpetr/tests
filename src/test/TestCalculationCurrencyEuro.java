@@ -51,10 +51,49 @@ public class TestCalculationCurrencyEuro {
 		
 		// Act
 		ps.addPayment(coinValue, coinCurrency, coinType);
-		//PReceipt receipt = ps.buy();
 		
 		// Assert
 		assertEquals("Should display 2 minutes for 5 cents", expectedParkingTime, ps.readDisplay());
+	}
+
+	@Test
+	public void shouldDisplay40000MinFor1000Eur() throws IllegalCoinException {
+
+		// Arrange
+		int expectedParkingTime = 40000;	// In minutes
+		int coinValue = 2;
+		int multiplier = 500;
+		Currency.ValidCurrency coinCurrency = Currency.ValidCurrency.EURO;
+		Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
+
+		// Act
+		for (int i = 0; i < multiplier; i++) {
+			ps.addPayment(coinValue, coinCurrency, coinType);
+		}
+
+
+		// Assert
+		assertEquals("Should display 40 000 min for 1000 EUR", expectedParkingTime, ps.readDisplay());
+	}
+
+	@Test
+	public void shouldDisplay212MinFor5Eur30Cents() throws IllegalCoinException {
+
+		// Arrange
+		int expectedParkingTime = 212;	// In minutes
+		int coinValue = 5;
+		//Currency.ValidCurrency coinCurrency = Currency.ValidCurrency.EURO;
+		//Currency.ValidCoinType coinType = Currency.ValidCoinType.FRACTION;
+
+		// Act
+		ps.addPayment(2, Currency.ValidCurrency.EURO, Currency.ValidCoinType.INTEGER);
+		ps.addPayment(2, Currency.ValidCurrency.EURO, Currency.ValidCoinType.INTEGER);
+		ps.addPayment(1, Currency.ValidCurrency.EURO, Currency.ValidCoinType.INTEGER);
+		ps.addPayment(10, Currency.ValidCurrency.EURO, Currency.ValidCoinType.FRACTION);
+		ps.addPayment(20, Currency.ValidCurrency.EURO, Currency.ValidCoinType.FRACTION);
+
+		// Assert
+		assertEquals("Should display 212 minutes for 5 eur and 50 cents", expectedParkingTime, ps.readDisplay());
 	}
 
 	/**

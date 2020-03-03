@@ -80,7 +80,7 @@ public class TestCalculationCurrencyDkk {
 		// Assert
 		assertEquals("Should display 30 min for 5.50 DKK", expectedParkingTime, ps.readDisplay());
 	}
-	
+
 
 
 
