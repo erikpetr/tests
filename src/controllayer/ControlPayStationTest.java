@@ -18,6 +18,7 @@ public class ControlPayStationTest {
 
     @After
     public void tearDown() throws Exception {
+        this.payStation = null;
     }
 
     @Test
@@ -32,7 +33,7 @@ public class ControlPayStationTest {
             e.printStackTrace();
         }
 
-        assertEquals(80, payStation.readDisplay());
+        assertEquals("Adding an 2 EUR coin should display 80 minutes",80, payStation.readDisplay());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -42,6 +43,7 @@ public class ControlPayStationTest {
         Currency.ValidCoinType coinType = Currency.ValidCoinType.valueOf("Invalid");
 
         payStation.addPayment(amount, currency, coinType);
+        System.out.println("Adding an invalid DKK coin type should throw an IllegalArgumentException");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -51,6 +53,7 @@ public class ControlPayStationTest {
         Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
 
         payStation.addPayment(amount,currency,coinType);
+        System.out.println("Adding an invalid currency - USD - should throw an IllegalArgumentException");
     }
 
     @Test(expected = IllegalCoinException.class)
@@ -60,6 +63,7 @@ public class ControlPayStationTest {
         Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
 
         payStation.addPayment(amount,currency,coinType);
+        System.out.println("Adding a not existing DKK coin value should throw an IllegalCoinException");
     }
 
 }
