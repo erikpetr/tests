@@ -18,7 +18,7 @@ import controllayer.*;
 //import static org.junit.Assert.*;
 
 /**
- * Inspired by the book: Flexible, Reliable Software Henrik Bærbak Christensen:
+ * Inspired by the book: Flexible, Reliable Software Henrik B?rbak Christensen:
  * Flexible, Reliable Software. Taylor and Francis Group, LLC 2010
  */
 
@@ -67,7 +67,7 @@ public class TestDatabaseAccess {
 		int key = 0; //TODO: Call dbPbuy
 		
 		// Assert
-		assertEquals("Dummy", key > 0);
+		assertEquals("Dummy", 0, 1);
 		
 	}	
 	
