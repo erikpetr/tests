@@ -67,7 +67,7 @@ public class TestDatabaseAccess {
 		int key = 0; //TODO: Call dbPbuy
 		
 		// Assert
-		assertEquals("Dummy", key > 0);
+		assertEquals("Dummy", 0, 1);
 		
 	}	
 	
