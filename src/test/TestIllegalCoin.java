@@ -1,6 +1,7 @@
 package test;
 
 import org.junit.*;
+import static org.junit.Assert.*;
 
 import controllayer.*;
 import modellayer.Currency;
@@ -28,6 +29,7 @@ public class TestIllegalCoin {
 	// Norwegian coin
 	@Test(expected = IllegalCoinException.class)
 	public void shouldRejectIllegalCurrencyNokCoin() throws IllegalCoinException {
+		System.out.println("When adding an 1 NOK coin as payment, it should throw an IllegalCoinException");
 		int amount = 1;
 		Currency.ValidCurrency currency = Currency.ValidCurrency.NOK;
 		Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
@@ -36,6 +38,7 @@ public class TestIllegalCoin {
 	// unknown Euro coin value
 	@Test(expected = IllegalCoinException.class)
 	public void shouldRejectIllegalEuroCoin() throws IllegalCoinException {
+		System.out.println("When adding an 4 EUR coin as payment, it should throw an IllegalCoinException");
 		int amount = 4;
 		Currency.ValidCurrency currency = Currency.ValidCurrency.EURO;
 		Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
