@@ -64,13 +64,34 @@ public class TestDatabaseAccess {
 		DatabasePBuy dbPbuy = new DatabasePBuy();
 		
 		// Act
-		int key = 0; //TODO: Call dbPbuy
+		int key = 0;
+		
+		try {
+			key = dbPbuy.insertParkingBuy(tempPBuy);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		// Assert
-		assertEquals("Dummy", key > 0);
+		assertTrue("Key should be greater than 0 (no error)", key > 0);
 		
-	}	
-	
+		tempPBuy.setId(key);
+		
+		// Act
+		int numRowDeleted = 0;
+		
+		try {
+			numRowDeleted = dbPbuy.deleteParkingBuy(tempPBuy);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// Assert
+		assertEquals("Num row deleted should be equal to 1", numRowDeleted, 1);
+	}
+
 	
 	@Test
 	public void wasRetrievedPriceDatabaselayer() {
