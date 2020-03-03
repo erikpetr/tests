@@ -28,7 +28,7 @@ public class TestIllegalCoin {
 	// Norwegian coin
 	@Test(expected = IllegalCoinException.class)
 	public void shouldRejectIllegalCurrencyNokCoin() throws IllegalCoinException {
-		int amount = 34;
+		int amount = 1;
 		Currency.ValidCurrency currency = Currency.ValidCurrency.NOK;
 		Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
 		ps.addPayment(amount,currency, coinType);
