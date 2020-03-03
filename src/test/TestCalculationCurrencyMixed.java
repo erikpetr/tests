@@ -26,12 +26,27 @@ public class TestCalculationCurrencyMixed {
 	 */
 	@Test
 	public void shouldDisplay4MinFor1CentAnd1Ore() throws IllegalCoinException {
+		int expectedParkingTime = 4;	// In minutes
+		
 		// Arrange
 		
+		int coinValue = 1;
+		Currency.ValidCurrency coinCurrency = Currency.ValidCurrency.EURO;
+		Currency.ValidCoinType coinType = Currency.ValidCoinType.FRACTION;
+		
 		// Act
+		ps.addPayment(coinValue, coinCurrency, coinType);
+		
+		// Arrange
+		coinValue = 50;
+		coinCurrency = Currency.ValidCurrency.DKK;
+		coinType = Currency.ValidCoinType.FRACTION;
 
+		// Act
+		ps.addPayment(coinValue, coinCurrency, coinType);
+		
 		// Assert
-		assertEquals("Dummy", 0, 1);		
+		assertEquals("Should display 4 minutes for 1 cents and 10 re", expectedParkingTime, ps.readDisplay());
 	}
 
 	
