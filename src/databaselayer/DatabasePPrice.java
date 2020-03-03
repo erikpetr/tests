@@ -42,14 +42,11 @@ public class DatabasePPrice implements IDbPPrice {
 
 			System.out.println(rs == null);
 			rs.next();
-			System.out.println("2");
 			price = rs.getInt(1);
 
-			System.out.println("3");
 			pZone = new PZone(zoneId, "TestName");
 			foundPrice = new PPrice(price, pZone);
 
-			System.out.println("4");
 			stmt.close();
 		} catch (SQLException ex) {
 			foundPrice = null;
