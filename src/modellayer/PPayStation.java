@@ -2,7 +2,6 @@ package modellayer;
 
 import controllayer.ControlPrice;
 import controllayer.IllegalCoinException;
-import utility.Validation;
 
 /**
  * Inspired by the book: Flexible, Reliable Software
@@ -10,7 +9,8 @@ import utility.Validation;
  */
 
 public class PPayStation {
-	
+
+	private final Calculation calculation = new Calculation(this);
 	// PayStation ident
 	private int id;	
 	// PayStaion model
@@ -50,7 +50,15 @@ public class PPayStation {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
+
+	public ControlPrice getControlPrice() {
+		return controlPrice;
+	}
+
+	public void setControlPrice(ControlPrice controlPrice) {
+		this.controlPrice = controlPrice;
+	}
+
 	public void addAmount(Coin coin, PPrice currentPrice) {
 		
 		Currency.ValidCurrency currency = coin.getCurrency();
@@ -59,56 +67,33 @@ public class PPayStation {
 
 		if (currency == Currency.ValidCurrency.DKK) {
 			//PPrice nowPrice = controlPrice.getCurrentPrice();
-			valueInCent = getDkkCoinValueInCent(coin, currentPrice);
+			valueInCent = calculation.getDkkCoinValueInCent(coin, currentPrice);
 		} else {
-			valueInCent = getEuroCoinValueInCent(coin);
+			valueInCent = calculation.getEuroCoinValueInCent(coin);
 		}
 		
 		this.amount += valueInCent;
 	}
 	
 	public int getTimeBoughtInMinutes() {
-		
-		PPrice aPrice = controlPrice.getCurrentPrice();
-		int timeBoughtInMinutes = 0;
 
-		double timeBoughtInSeconds = this.amount * aPrice.getParkingPrice();
-		timeBoughtInMinutes = (int) ((timeBoughtInSeconds + 59) / 60);
-
-		return timeBoughtInMinutes;
+		return calculation.getTimeBoughtInMinutes();
 	}
 	
 	public void validateCoin(Coin coin) throws IllegalCoinException {
-		
-		Validation.validateCoin(coin);	
+
+		calculation.validateCoin(coin);
 	}
 	
 
 	private double getEuroCoinValueInCent(Coin coin) {
-		double valueInCent = 0;
-		double coinValue = coin.getAmount();
 
-		if (coin.getCoinType() == Currency.ValidCoinType.INTEGER) {
-			valueInCent = coinValue * 100;
-		} else {
-			valueInCent = coinValue;
-		}
-
-		return valueInCent;
+		return calculation.getEuroCoinValueInCent(coin);
 	}
 
 	private double getDkkCoinValueInCent(Coin coin, PPrice price) {
-		double valueInCent = 0;
-		Currency.ValidCoinType coinType = coin.getCoinType();
-		double coinValue = coin.getAmount();
 
-		if (coinType == Currency.ValidCoinType.INTEGER) {
-			valueInCent = (coinValue * 100) / price.getExchangeEuroDkk();
-		} else {
-			valueInCent = coinValue / price.getExchangeEuroDkk();
-		}
-
-		return valueInCent;
-	}	
+		return calculation.getDkkCoinValueInCent(coin, price);
+	}
 	
 }
