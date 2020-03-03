@@ -46,7 +46,7 @@ public class TestCalculationCurrencyMixed {
 		ps.addPayment(coinValue, coinCurrency, coinType);
 		
 		// Assert
-		assertEquals("Should display 4 minutes for 1 cents and 10 re", expectedParkingTime, ps.readDisplay());
+		assertEquals("Should display 4 minutes for 1 cents and 50 ore", expectedParkingTime, ps.readDisplay());
 	}
 
 	
