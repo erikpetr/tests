@@ -64,7 +64,7 @@ public class TestDatabaseAccess {
 		DatabasePBuy dbPbuy = new DatabasePBuy();
 		
 		// Act
-		int key;
+		int key = 0;
 		
 		try {
 			key = dbPbuy.insertParkingBuy(tempPBuy);
@@ -85,7 +85,7 @@ public class TestDatabaseAccess {
 	@Test
 	public void wasRetrievedPriceDatabaselayer() {
 		// Arrange
-		PPrice foundPrice;
+		PPrice foundPrice = null;
 		int pZoneId = 2;
 		DatabasePPrice dbPrice = new DatabasePPrice();
 
@@ -108,7 +108,7 @@ public class TestDatabaseAccess {
 	public void wasRetrievedPriceControllayer() {
 		// Arrange
 		ControlPrice controlPrice = new ControlPrice();
-		PPrice pPrice;
+		PPrice pPrice = null;
 		
 		// Act
 		try {
@@ -135,7 +135,7 @@ public class TestDatabaseAccess {
 		// 		
 		// Arrange
 		DatabasePBuy dbPbuy = new DatabasePBuy();
-		int numDeleted;
+		int numDeleted = 0;
 		
 		// Act
 		try {
