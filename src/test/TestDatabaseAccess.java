@@ -64,14 +64,24 @@ public class TestDatabaseAccess {
 		DatabasePBuy dbPbuy = new DatabasePBuy();
 		
 		// Act
-		int key = 0; //TODO: Call dbPbuy
+		int key = 0;
+		
+		try {
+			key = dbPbuy.insertParkingBuy(tempPBuy);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		// Assert
-		assertEquals("Dummy", 0, 1);
-		
-	}	
+		assertTrue("Key should be greater than 0 (no error)", key > 0);
 	
-	
+		tempPBuy.setId(key);
+	}
+
+	/**
+	 * WARNING : The price at the idzonw 2 can change
+	 */
 	@Test
 	public void wasRetrievedPriceDatabaselayer() {
 		// Arrange
@@ -81,23 +91,35 @@ public class TestDatabaseAccess {
 
 		
 		// Act
-
-		// Assert
-		assertEquals("Dummy", 0, 1);
+		try {
+			foundPrice = dbPrice.getPriceByZoneId(pZoneId);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		// Assert
+		assertTrue("A PPrice should have been discovered", foundPrice != null);
+		assertEquals("Found price should be equal to 25", foundPrice.getParkingPrice(), 25);
 	}
 	
 	
 	@Test
 	public void wasRetrievedPriceControllayer() {
-
 		// Arrange
-
+		ControlPrice controlPrice = new ControlPrice();
+		PPrice pPrice = null;
 		
 		// Act
-
+		try {
+			pPrice = controlPrice.getPriceRemote(2);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		// Assert
-		assertEquals("Dummy", 0, 1);
+		assertEquals("Found price should be equal to 25", 25, pPrice.getParkingPrice());
 		
 	}	
 	
