@@ -68,15 +68,15 @@ public class TestDatabaseAccess {
 		
 		try {
 			key = dbPbuy.insertParkingBuy(tempPBuy);
+			// Assert
+			assertTrue("Key should be greater than 0 (no error)", key > 0);
+
+			tempPBuy.setId(key);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		// Assert
-		assertTrue("Key should be greater than 0 (no error)", key > 0);
-	
-		tempPBuy.setId(key);
+
 	}
 
 	/**
@@ -93,14 +93,15 @@ public class TestDatabaseAccess {
 		// Act
 		try {
 			foundPrice = dbPrice.getPriceByZoneId(pZoneId);
+
+			// Assert
+			assertNotNull("A PPrice should have been discovered", foundPrice);
+			assertEquals("Found price should be equal to 25", foundPrice.getParkingPrice(), 25);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		// Assert
-		assertNotNull("A PPrice should have been discovered", foundPrice);
-		assertEquals("Found price should be equal to 25", foundPrice.getParkingPrice(), 25);
+
 	}
 	
 	
@@ -113,13 +114,13 @@ public class TestDatabaseAccess {
 		// Act
 		try {
 			pPrice = controlPrice.getPriceRemote(2);
+
+			// Assert
+			assertEquals("Found price should be equal to 25", 25, pPrice.getParkingPrice());
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		// Assert
-		assertEquals("Found price should be equal to 25", 25, pPrice.getParkingPrice());
 		
 	}	
 	
@@ -140,14 +141,14 @@ public class TestDatabaseAccess {
 		// Act
 		try {
 			numDeleted = dbPbuy.deleteParkingBuy(tempPBuy);
+
+			// Assert
+			assertEquals("One row deleted", 1, numDeleted );
 		} catch(Exception ex) { 
 			System.out.println("Error: " + ex.getMessage());
 		} finally {
 			DBConnection.closeConnection();
 		}
-	
-		// Assert
-		assertEquals("One row deleted", 1, numDeleted );
 	}	
 
 }
