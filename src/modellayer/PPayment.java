@@ -22,8 +22,7 @@ public class PPayment {
 		this.amount = amount;
 	}
 	
-	public void addAmount(double amount, Currency.ValidCurrency currency,
-			Currency.ValidCoinType coinType) {
+	public void addAmount(double amount, Currency.ValidCurrency currency, Currency.ValidCoinType coinType) {
 		
 		double valueInCent = 0;
 

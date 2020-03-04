@@ -75,7 +75,7 @@ public class TestDatabaseAccess {
 		
 		// Assert
 		assertTrue("Key should be greater than 0 (no error)", key > 0);
-		
+	
 		tempPBuy.setId(key);
 	}
 
