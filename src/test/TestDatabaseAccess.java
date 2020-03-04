@@ -75,6 +75,7 @@ public class TestDatabaseAccess {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			fail();
 		}
 
 	}
@@ -100,6 +101,7 @@ public class TestDatabaseAccess {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			fail();
 		}
 
 	}
@@ -120,8 +122,8 @@ public class TestDatabaseAccess {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			fail();
 		}
-		
 	}	
 	
 	
