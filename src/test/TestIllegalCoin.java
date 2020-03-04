@@ -53,6 +53,7 @@ public class TestIllegalCoin {
 		try {
 			ps.addPayment(50, Currency.ValidCurrency.EURO, Currency.ValidCoinType.FRACTION);
 			ps.addPayment(1, Currency.ValidCurrency.USD, Currency.ValidCoinType.INTEGER);
+			assertFalse(usdFound);
 		} catch (IllegalCoinException e) {
 			System.out.println("Illegally inserted coin found: \n" + e.getMessage());
 			usdFound = true;
