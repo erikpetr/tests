@@ -46,9 +46,8 @@ public class ControlPayStation {
 		LocalDate currentTime = java.time.LocalDate.now();
 		
 		// create buy
-		PBuy thisBuy = new PBuy();
+		PBuy thisBuy = new PBuy(currentTime, payStation.getTimeBoughtInMinutes(), payStation.getAmount());
 		thisBuy.setAssociatedPaystation(payStation);
-		thisBuy.setBuyTime(currentTime);
 		
 		// Save in Parkingsystem db
 		IDbPBuy dbBuy = new DatabasePBuy();
