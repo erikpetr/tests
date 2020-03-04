@@ -19,6 +19,7 @@ public class DatabasePBuy implements IDbPBuy {
 		double payedCentAmount = payStation.getAmount();
 
 		Connection con = DBConnection.getInstance().getDBcon();
+		System.out.println(con);
 
 		String baseInsert = "insert into PBuy (buyTime, duration, payedAmount, pPaystation_id) values ";
 		baseInsert += "(" + sqldate + ", " + parkingDuration + ", " + payedCentAmount + ", " + payStation.getId() + ")";
