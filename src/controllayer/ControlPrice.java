@@ -8,15 +8,17 @@ import modellayer.PPrice;
 public class ControlPrice {
 	
 	private IDbPPrice dbPrice;
+
+	private static PPrice currentPrice;
 	
 	public ControlPrice() {
 		this.dbPrice = new DatabasePPrice();
 	}
 	
 	public PPrice getCurrentPrice() {
-		
-		PPrice currentPrice = new PPrice(); //hardcoded
-		
+		if (currentPrice == null) {
+			return new PPrice();
+		}
 		return currentPrice;
 	}
 	
@@ -24,6 +26,7 @@ public class ControlPrice {
 		
 		// Get price from Parkingsystem DB
 		PPrice readPrice = dbPrice.getPriceByZoneId(zoneId);
+		currentPrice = readPrice;
 		//
 		return readPrice;
 	}
