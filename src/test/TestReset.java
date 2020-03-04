@@ -26,7 +26,18 @@ public class TestReset {
 	 */
 	@Test
 	public void shouldClearAfterBuy() throws IllegalCoinException, Exception {
-		//
+		int amount = 2;
+		Currency.ValidCurrency currency = Currency.ValidCurrency.EURO;
+		Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
+		ps.addPayment(amount,currency, coinType);
+		
+		amount = 1;
+		currency = Currency.ValidCurrency.EURO;
+		coinType = Currency.ValidCoinType.INTEGER;
+		ps.addPayment(amount,currency, coinType);
+		
+		PReceipt receipt = ps.buy();
+		assertEquals(ps.readDisplay(), 0);
 	}
 
 	/**
@@ -34,6 +45,11 @@ public class TestReset {
 	 */
 	@Test
 	public void shouldClearAfterCancel() throws IllegalCoinException {
-		//
+		int amount = 2;
+		Currency.ValidCurrency currency = Currency.ValidCurrency.EURO;
+		Currency.ValidCoinType coinType = Currency.ValidCoinType.INTEGER;
+		ps.addPayment(amount,currency, coinType);
+		ps.cancel();
+		assertEquals(ps.readDisplay(), 0);
 	}
 }
