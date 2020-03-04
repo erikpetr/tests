@@ -7,7 +7,8 @@ package modellayer;
 
 public class Currency {
 	
-	public enum ValidCurrency { EURO, DKK, SEK, NOK, USD };
-	public enum ValidCoinType { FRACTION, INTEGER };
+	public enum ValidCurrency { EURO, DKK, SEK, NOK, USD }
+
+    public enum ValidCoinType { FRACTION, INTEGER }
 
 }

@@ -9,7 +9,7 @@ import modellayer.PReceipt;
 
 public class ControlReceipt {
 	
-	private PReceipt buyReceipt = null;
+	private PReceipt buyReceipt;
 
 	public ControlReceipt(int value) {
 		buyReceipt = new PReceipt(value);

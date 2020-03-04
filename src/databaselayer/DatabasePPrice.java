@@ -16,7 +16,7 @@ public class DatabasePPrice implements IDbPPrice {
 	}
 	
 	public PPrice getPriceByZoneId(int zoneId) throws DatabaseLayerException {
-		PPrice foundPrice = null;
+		PPrice foundPrice;
 		
 		Connection con = DBConnection.getInstance().getDBcon();
 

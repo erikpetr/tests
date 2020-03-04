@@ -64,7 +64,7 @@ public class TestDatabaseAccess {
 		DatabasePBuy dbPbuy = new DatabasePBuy();
 		
 		// Act
-		int key = 0;
+		int key;
 		
 		try {
 			key = dbPbuy.insertParkingBuy(tempPBuy);
@@ -85,7 +85,7 @@ public class TestDatabaseAccess {
 	@Test
 	public void wasRetrievedPriceDatabaselayer() {
 		// Arrange
-		PPrice foundPrice = null;
+		PPrice foundPrice;
 		int pZoneId = 2;
 		DatabasePPrice dbPrice = new DatabasePPrice();
 
@@ -99,7 +99,7 @@ public class TestDatabaseAccess {
 		}
 		
 		// Assert
-		assertTrue("A PPrice should have been discovered", foundPrice != null);
+		assertNotNull("A PPrice should have been discovered", foundPrice);
 		assertEquals("Found price should be equal to 25", foundPrice.getParkingPrice(), 25);
 	}
 	
@@ -108,7 +108,7 @@ public class TestDatabaseAccess {
 	public void wasRetrievedPriceControllayer() {
 		// Arrange
 		ControlPrice controlPrice = new ControlPrice();
-		PPrice pPrice = null;
+		PPrice pPrice;
 		
 		// Act
 		try {
@@ -135,7 +135,7 @@ public class TestDatabaseAccess {
 		// 		
 		// Arrange
 		DatabasePBuy dbPbuy = new DatabasePBuy();
-		int numDeleted = 0;
+		int numDeleted;
 		
 		// Act
 		try {

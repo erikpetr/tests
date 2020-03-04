@@ -1,6 +1,5 @@
 package controllayer;
 
-import modellayer.Coin;
 import modellayer.Currency;
 import org.junit.After;
 import org.junit.Before;

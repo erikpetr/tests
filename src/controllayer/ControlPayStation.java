@@ -56,9 +56,8 @@ public class ControlPayStation {
 		//
 		ControlReceipt ctrlReceipt = new ControlReceipt(payStation.getTimeBoughtInMinutes());
 		
-		reset();	
-		PReceipt buyReceipt = ctrlReceipt.getParkingReceipt();		
-		return buyReceipt;
+		reset();
+		return ctrlReceipt.getParkingReceipt();
 	}
 
 	/**

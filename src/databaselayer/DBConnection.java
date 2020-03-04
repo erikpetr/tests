@@ -8,13 +8,12 @@ import java.sql.DriverManager;
 public class DBConnection {   
 	//Constants used to get access to the database
 	
-	private static final String  driver = "jdbc:sqlserver://localhost:1433";;
+	private static final String  driver = "jdbc:sqlserver://localhost:1433";
     private static final String  databaseName = ";databaseName=PayStation";
     
-    private static String  userName = "; user=sa";
-    private static String password = ";password=Secret#0";
-   
-    private DatabaseMetaData dma;
+    private static final String  userName = "; user=sa";
+    private static final String password = ";password=Secret#0";
+
     private static Connection con;
     
     // an instance of the class is generated
@@ -39,7 +38,7 @@ public class DBConnection {
             //connection to the database
             con = DriverManager.getConnection(url);
             con.setAutoCommit(true);
-            dma = con.getMetaData(); // get meta data
+            DatabaseMetaData dma = con.getMetaData(); // get meta data
             System.out.println("Connection to " + dma.getURL());
             System.out.println("Driver " + dma.getDriverName());
             System.out.println("Database product name " + dma.getDatabaseProductName());

@@ -13,7 +13,7 @@ public class Calculation {
     public int getTimeBoughtInMinutes() {
 
         PPrice aPrice = PPayStation.getControlPrice().getCurrentPrice();
-        int timeBoughtInMinutes = 0;
+        int timeBoughtInMinutes;
 
         double timeBoughtInSeconds = PPayStation.getAmount() * aPrice.getParkingPrice();
         timeBoughtInMinutes = (int) ((timeBoughtInSeconds + 59) / 60);
@@ -27,7 +27,7 @@ public class Calculation {
     }
 
     double getEuroCoinValueInCent(Coin coin) {
-        double valueInCent = 0;
+        double valueInCent;
         double coinValue = coin.getAmount();
 
         if (coin.getCoinType() == Currency.ValidCoinType.INTEGER) {
@@ -40,7 +40,7 @@ public class Calculation {
     }
 
     double getDkkCoinValueInCent(Coin coin, PPrice price) {
-        double valueInCent = 0;
+        double valueInCent;
         Currency.ValidCoinType coinType = coin.getCoinType();
         double coinValue = coin.getAmount();
 
