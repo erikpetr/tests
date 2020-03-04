@@ -91,6 +91,6 @@ public class CalculationTest {
         double result = calculation.getDkkCoinValueInCent(coin, price);
         double expected = 20 / 7.5 * 100;
 
-        assertEquals("20 Kr coin should give back",expected,result, 0.1);
+        assertEquals("20 Kr coin should give back a correct cent value",expected,result, 0.1);
     }
 }
