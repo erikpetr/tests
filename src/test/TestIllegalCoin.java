@@ -47,17 +47,17 @@ public class TestIllegalCoin {
 
 	//Valid EUR coins and then USD
 	@Test
-	public void shouldDisplay20MinFor50Cents1Usd() {
+	public void shouldThrowExceptionFor50Cents1Usd() {
 		int expectedParkingTime = 20; // in minutes
 		boolean usdFound = false;
 		try {
 			ps.addPayment(50, Currency.ValidCurrency.EURO, Currency.ValidCoinType.FRACTION);
 			ps.addPayment(1, Currency.ValidCurrency.USD, Currency.ValidCoinType.INTEGER);
+			assertFalse(usdFound);
 		} catch (IllegalCoinException e) {
 			System.out.println("Illegally inserted coin found: \n" + e.getMessage());
 			usdFound = true;
+			assertTrue("When adding an USD coin, it should throw an IllegalCoinException", usdFound);
 		}
-		assertEquals("When adding 50 EUR cents it should display 3 minutes", expectedParkingTime, ps.readDisplay());
-		assertTrue("When adding an USD coin, it should throw an IllegalCoinException", usdFound);
 	}
 }
