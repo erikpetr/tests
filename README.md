@@ -5,7 +5,7 @@
 
 > This is the 2nd Semester Mini Project Test for the UCN Computer Science AP degree course (dmai0919 class - group #3)
 > Our exercise during this mini project was to design and implement test cases for the partly working half-done code provided to us.
-> The project started on March 2, 2020 and our deadline was March 4, 2020, 16:00.
+> The project started on March 2, 2020, and our deadline was March 4, 2020, 16:00.
 
 ## Install
 

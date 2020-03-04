@@ -25,7 +25,7 @@ public class TestCalculationCurrencyEuro {
 	 * Entering no coins should make the display report 0 minutes parking time.
 	 */
 	@Test
-	public void shouldDisplay0() throws IllegalCoinException {
+	public void shouldDisplay0() {
 		
 		// Arrange
 		int expectedParkingTime = 0;

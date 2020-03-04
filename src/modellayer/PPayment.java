@@ -24,7 +24,7 @@ public class PPayment {
 	
 	public void addAmount(double amount, Currency.ValidCurrency currency, Currency.ValidCoinType coinType) {
 		
-		double valueInCent = 0;
+		double valueInCent;
 
 		if (currency == Currency.ValidCurrency.DKK) {
 			PPrice nowPrice = new PPrice();
@@ -38,7 +38,7 @@ public class PPayment {
 	
 	public int getTimeBoughtInMinutes() {
 		PPrice aPrice = new PPrice();
-		int timeBoughtInMinutes = 0;
+		int timeBoughtInMinutes;
 
 		double timeBoughtInSeconds = this.amount * aPrice.getParkingPrice();
 		timeBoughtInMinutes = (int) ((timeBoughtInSeconds + 59) / 60);
@@ -119,11 +119,9 @@ public class PPayment {
 	
 	private boolean testOreCoin(int coinValue) {
 		boolean coinIsOk = true;
-		switch (coinValue) {
-			case 50:
-				break;
-			default:
-				coinIsOk = false;
+		if (coinValue == 50) {
+		} else {
+			coinIsOk = false;
 		}
 		return coinIsOk;
 	}
@@ -144,7 +142,7 @@ public class PPayment {
 	}	
 	
 	private double getEuroCoinValueInCent(double coinValue, Currency.ValidCoinType coinType) {
-		double valueInCent = 0;
+		double valueInCent;
 
 		if (coinType == Currency.ValidCoinType.INTEGER) {
 			valueInCent = coinValue * 100;
@@ -156,7 +154,7 @@ public class PPayment {
 	}
 
 	private double getDkkCoinValueInCent(double coinValue, Currency.ValidCoinType coinType, PPrice price) {
-		double valueInCent = 0;
+		double valueInCent;
 
 		if (coinType == Currency.ValidCoinType.INTEGER) {
 			valueInCent = (coinValue * 100) / price.getExchangeEuroDkk();

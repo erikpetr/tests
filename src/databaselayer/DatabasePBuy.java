@@ -63,8 +63,8 @@ public class DatabasePBuy implements IDbPBuy {
 	public int deleteParkingBuy(PBuy parkingBuy) throws DatabaseLayerException {
 		int numRowsDeleted = 0;
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		Connection con;
+		PreparedStatement pstmt;
 		
 		String baseDelete = "DELETE FROM PBuy WHERE id=?";
 

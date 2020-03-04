@@ -84,11 +84,9 @@ public class Validation {
 	
 	private static boolean testOreCoin(int coinValue) {
 		boolean coinIsOk = true;
-		switch (coinValue) {
-			case 50:
-				break;
-			default:
-				coinIsOk = false;
+		if (coinValue == 50) {
+		} else {
+			coinIsOk = false;
 		}
 		return coinIsOk;
 	}

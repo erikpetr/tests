@@ -63,7 +63,7 @@ public class PPayStation {
 		
 		Currency.ValidCurrency currency = coin.getCurrency();
 		
-		double valueInCent = 0;
+		double valueInCent;
 
 		if (currency == Currency.ValidCurrency.DKK) {
 			//PPrice nowPrice = controlPrice.getCurrentPrice();
