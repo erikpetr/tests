@@ -77,19 +77,6 @@ public class TestDatabaseAccess {
 		assertTrue("Key should be greater than 0 (no error)", key > 0);
 		
 		tempPBuy.setId(key);
-		
-		// Act
-		int numRowDeleted = 0;
-		
-		try {
-			numRowDeleted = dbPbuy.deleteParkingBuy(tempPBuy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		// Assert
-		assertEquals("Num row deleted should be equal to 1", numRowDeleted, 1);
 	}
 
 	/**
@@ -119,14 +106,20 @@ public class TestDatabaseAccess {
 	
 	@Test
 	public void wasRetrievedPriceControllayer() {
-
 		// Arrange
-
+		ControlPrice controlPrice = new ControlPrice();
+		PPrice pPrice = null;
 		
 		// Act
-
+		try {
+			pPrice = controlPrice.getPriceRemote(2);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		// Assert
-		assertEquals("Dummy", 0, 1);
+		assertEquals("Found price should be equal to 25", 25, pPrice.getParkingPrice());
 		
 	}	
 	
